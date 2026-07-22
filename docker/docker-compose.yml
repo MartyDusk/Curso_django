@@ -24,7 +24,7 @@ services:
     image: postgres:18-alpine
     container_name: postgres
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
       - postgres:/var/lib/postgresql
   pgadmin:
@@ -32,7 +32,7 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin
     ports:
-      - 8080:80
+      - ${PGADMIN_PORT}:${PGADMIN_DEFAULT_PORT}
     volumes:
       - pgadmin:/var/lib/pgadmin
     depends_on:
