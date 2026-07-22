@@ -1,0 +1,49 @@
+volumes:
+  app:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: app
+  postgres:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: postgres
+  pgadmin:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: pgadmin
+
+services:
+  postgres:
+    env_file: .env
+    image: postgres:18-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql
+  pgadmin:
+    env_file: .env
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 8080:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+  app:
+    build: .
+    env_file: .env
+    container_name: app
+    tty: true
+    stdin_open: true
+    volumes:
+      - app:/work
+    depends_on:
+      - postgres
