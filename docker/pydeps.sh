@@ -2,6 +2,7 @@
 #
 echo "$(cat <<- 'EOF'
     django
+    psycopg2-binary
     djangorestframework
     django-cors-headers
     djangorestframework_simplejwt
