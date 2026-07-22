@@ -4,4 +4,4 @@ WORKDIR /work
 COPY pydeps.sh .
 RUN sh pydeps.sh
 
-CMD read k
+CMD read NONEXISTING
