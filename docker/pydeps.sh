@@ -1,5 +1,8 @@
 #! /dev/null
 #
+# shellcheck shell=sh
+# shellcheck disable=SC2005
+#
 echo "$(cat <<- 'EOF'
     django
     psycopg2-binary
